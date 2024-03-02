@@ -18,30 +18,26 @@ class Person {
 }
 
 class House {
-  protected door: 'true' | 'false';
-  protected tenants: object[];
-  protected key: Key;
+  protected door: boolean = false;
+  protected tenants: Person[] = [];
 
-  constructor(key: Key) {
-    this.door = 'false';
-    this.tenants = [];
-    this.key = key;
-  }
-
+  constructor(protected key: Key) {}
+  
   comeIn(person: Person) {
-    if (this.door === 'true') {
+    if (this.door) {
       this.tenants.push(person);
-      console.log('person comein')
+      console.log('person come in')
     }
   }
 
   openDoor(key: Key) {}
-}
+  }
+
 
 class MyHouse extends House {
   openDoor(key: Key) {
     if (key.getSignature() === this.key.getSignature()) {
-      this.door = 'true';
+      this.door = true;
       console.log("Door open")
   }
   }
